@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import userWeater from './userWeaterThunk';
+import { userWeater } from './userWeaterThunk';
 
 const initialState = {
   weather: {},
@@ -12,6 +12,8 @@ const userWeaterSlise = createSlice({
   reducers: {},
   extraReducers: {
     [userWeater.fulfilled.toString()]: (state, action) => {
+      // eslint-disable-next-line no-param-reassign
+      state.weather = true;
       // eslint-disable-next-line no-param-reassign
       state.isLoading = true;
     },

@@ -1,25 +1,30 @@
 import React, { useState, useCallback } from 'react';
+import { useSelector } from 'react-redux';
 import { IoSearch } from 'react-icons/io5';
-import { WiDayCloudy } from "react-icons/wi";
+import { WiDayCloudy } from 'react-icons/wi';
 import * as S from './HomeStyles';
+import { RootState } from '../../store/store';
 
 export function Home() {
-  const [city, setСity] = useState('');
+  const [city, setCity] = useState('');
+  const city1 = useSelector((state: RootState) => state);
 
   const handleChangeCity = useCallback(() => {
-    setСity();
+    setCity('');
   }, []);
+
   return (
     <>
       <S.HeaderWeather>
-        <S.HeaderName>
-          Weather
-        </S.HeaderName>
+        <S.HeaderName>Weather</S.HeaderName>
         <S.HeaderIcon>
-          <WiDayCloudy/>
+          <WiDayCloudy />
         </S.HeaderIcon>
       </S.HeaderWeather>
-      <S.Photo alt="pop" src='https://vyborg.tv/wp-content/uploads/2022/03/pogoda-oblaka-800x445.jpg}' />
+      <S.Photo
+        alt="pop"
+        src="https://vyborg.tv/wp-content/uploads/2022/03/pogoda-oblaka-800x445.jpg}"
+      />
       <S.Location>
         <S.SearchTitle>Найти прогноз</S.SearchTitle>
       </S.Location>
@@ -33,7 +38,8 @@ export function Home() {
         <S.SearchIcon>
           <IoSearch />
         </S.SearchIcon>
+        {/* {city1} */}
       </S.Container>
     </>
-  )
-};
+  );
+}
