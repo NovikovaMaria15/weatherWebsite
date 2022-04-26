@@ -1,17 +1,34 @@
-import React, { useState, useCallback } from 'react';
+import React, {
+  useState,
+  useCallback,
+  useEffect,
+  ChangeEventHandler,
+  ChangeEvent,
+} from 'react';
 import { useSelector } from 'react-redux';
+import { useAppDispatch, RootState } from '../../store/store';
 import { IoSearch } from 'react-icons/io5';
 import { WiDayCloudy } from 'react-icons/wi';
 import * as S from './HomeStyles';
-import { RootState } from '../../store/store';
+import { WeatherItems } from '../WeatherItems/WeatherItems';
+import { userWeather } from '../../store/userWeather/userWeatherThunk';
 
 export function Home() {
+  const dispatch = useAppDispatch();
   const [city, setCity] = useState('');
-  const city1 = useSelector((state: RootState) => state);
+  const Weather = useSelector((state: RootState) => state.userWeather.data);
 
-  const handleChangeCity = useCallback(() => {
-    setCity('');
-  }, []);
+  const handleChangeCity: ChangeEventHandler<HTMLInputElement> = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      setCity(event.target.value);
+    },
+    []
+  );
+
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    dispatch(userWeather({ city }));
+  }, [dispatch, city]);
 
   return (
     <>
@@ -31,15 +48,18 @@ export function Home() {
       <S.Container>
         <S.InputHome
           type="text"
-          name="radio"
+          name="text"
           value={city}
           onChange={handleChangeCity}
+          placeholder="Введите название города"
         />
         <S.SearchIcon>
           <IoSearch />
         </S.SearchIcon>
-        {/* {city1} */}
       </S.Container>
+      {Weather.map((data: any) => (
+        <WeatherItems key={data.id} city={data.city} />
+      ))}
     </>
   );
 }

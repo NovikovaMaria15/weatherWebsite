@@ -1,8 +1,8 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import userWeaterSlise from './userWeater/userWeaterSlise';
+import userWeatherSlise from './userWeather/userWeatherSlise';
 
 const rootReducer = combineReducers({
-  userWeater: userWeaterSlise.reducer,
+  userWeather: userWeatherSlise.reducer,
 });
 
 export default rootReducer;
