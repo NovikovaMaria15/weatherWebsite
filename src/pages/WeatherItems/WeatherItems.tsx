@@ -6,6 +6,7 @@ import * as S from './WeatherItemsStyles';
 
 export function WeatherItems({
   name,
+  obj,
   temp,
   tempMax,
   tempMin,
@@ -17,6 +18,7 @@ export function WeatherItems({
 }: any) {
   return (
     <>
+      <div> {obj} °</div>
       <div> {name}</div>
       <div> Температура {temp} °</div>
       <div> Максимальная температура {tempMax} °</div>

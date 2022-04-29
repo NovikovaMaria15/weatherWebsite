@@ -22,7 +22,9 @@ export function Home() {
   const displayMain = useSelector((state: RootState) => state.userWeather.main);
   const displaySys = useSelector((state: RootState) => state.userWeather.sys);
   const displayWind = useSelector((state: RootState) => state.userWeather.wind);
-  const weekData = useSelector((state: RootState) => state.weekWeather.data);
+  const weekCurrent = useSelector(
+    (state: RootState) => state.weekWeather.current
+  );
 
   const anyCity = useCallback(() => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -34,8 +36,7 @@ export function Home() {
     dispatch(weekWeather({ cityy: city1 }));
   }, [dispatch, city1]);
 
-  console.log('weekData', weekData);
-  console.log('weekData', weekData);
+  console.log('weekCurrent', weekCurrent);
 
   const handleChangeCity: ChangeEventHandler<HTMLInputElement> = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
@@ -80,6 +81,10 @@ export function Home() {
   // console.log('displaySys', displaySys);
   // console.log('displaySys', displayWind);
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+  const values = Object.values(weekCurrent);
+  console.log('values', values);
+
   return (
     <>
       <Header />
@@ -105,6 +110,7 @@ export function Home() {
       </S.Container>
       {open && (
         <WeatherItems
+          obj={values[2]}
           name={displayCity.name}
           temp={temperature}
           tempMax={temperatureMax}

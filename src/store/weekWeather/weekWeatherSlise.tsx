@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { weekWeather } from './weekWeatherThunk';
 
-const initialState: { data: any } = {
-  data: [],
+const initialState: { current: any } = {
+  current: [],
 };
 
 const weekWeatherSlise = createSlice({
@@ -15,6 +15,7 @@ const weekWeatherSlise = createSlice({
       console.log('state', state);
       // eslint-disable-next-line no-param-reassign
       // state.data = action.payload.response;
+      state.current = action.payload.response.current;
     },
   },
 });
