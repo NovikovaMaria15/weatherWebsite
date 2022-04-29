@@ -1,7 +1,6 @@
 import React, {
   useState,
   useCallback,
-  useEffect,
   ChangeEventHandler,
   ChangeEvent,
 } from 'react';
@@ -12,11 +11,31 @@ import { WiDayCloudy } from 'react-icons/wi';
 import * as S from './HomeStyles';
 import { WeatherItems } from '../WeatherItems/WeatherItems';
 import { userWeather } from '../../store/userWeather/userWeatherThunk';
+import { weekWeather } from '../../store/weekWeather/weekWeatherThunk';
+import { Header } from '../components/Header/Header';
 
 export function Home() {
   const dispatch = useAppDispatch();
-  const [city, setCity] = useState('');
-  const Weather = useSelector((state: RootState) => state.userWeather.data);
+  const [city1, setCity] = useState('');
+  const [open, setOpen] = useState(false);
+  const displayCity = useSelector((state: RootState) => state.userWeather.data);
+  const displayMain = useSelector((state: RootState) => state.userWeather.main);
+  const displaySys = useSelector((state: RootState) => state.userWeather.sys);
+  const displayWind = useSelector((state: RootState) => state.userWeather.wind);
+  const weekData = useSelector((state: RootState) => state.weekWeather.data);
+
+  const anyCity = useCallback(() => {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    dispatch(userWeather({ city: city1 }));
+  }, [dispatch, city1]);
+
+  const anyCity1 = useCallback(() => {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    dispatch(weekWeather({ cityy: city1 }));
+  }, [dispatch, city1]);
+
+  console.log('weekData', weekData);
+  console.log('weekData', weekData);
 
   const handleChangeCity: ChangeEventHandler<HTMLInputElement> = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
@@ -25,19 +44,45 @@ export function Home() {
     []
   );
 
-  useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    dispatch(userWeather({ city }));
-  }, [dispatch, city]);
+  const withdraw = useCallback(() => {
+    setOpen(true);
+    anyCity();
+    anyCity1();
+  }, [anyCity, anyCity1]);
+
+  const handleKeyDown = useCallback(
+    (event: any): any => {
+      if (event.key === 'Enter') {
+        withdraw();
+      }
+    },
+    [withdraw]
+  );
+
+  const sunset = displaySys.sunset;
+  const date = new Date();
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+  date.setTime(sunset);
+  const sunset_date = date.getHours() + ':' + date.getMinutes();
+
+  const sunrise = displaySys.sunrise;
+  const date1 = new Date();
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+  date1.setTime(sunrise);
+  const sunrise_date = date1.getHours() + ':' + date1.getMinutes();
+
+  const temperature = Math.round(displayMain.temp - 273);
+  const temperatureMax = Math.round(displayMain.temp_max - 273);
+  const temperatureMin = Math.round(displayMain.temp_min - 273);
+
+  // console.log('displayCity', displayCity);
+  // console.log('displayMain', displayMain);
+  // console.log('displaySys', displaySys);
+  // console.log('displaySys', displayWind);
 
   return (
     <>
-      <S.HeaderWeather>
-        <S.HeaderName>Weather</S.HeaderName>
-        <S.HeaderIcon>
-          <WiDayCloudy />
-        </S.HeaderIcon>
-      </S.HeaderWeather>
+      <Header />
       <S.Photo
         alt="pop"
         src="https://vyborg.tv/wp-content/uploads/2022/03/pogoda-oblaka-800x445.jpg}"
@@ -49,17 +94,28 @@ export function Home() {
         <S.InputHome
           type="text"
           name="text"
-          value={city}
+          value={city1}
           onChange={handleChangeCity}
+          onKeyPress={handleKeyDown}
           placeholder="Введите название города"
         />
         <S.SearchIcon>
-          <IoSearch />
+          <IoSearch onClick={withdraw} />
         </S.SearchIcon>
       </S.Container>
-      {Weather.map((data: any) => (
-        <WeatherItems key={data.id} city={data.city} />
-      ))}
+      {open && (
+        <WeatherItems
+          name={displayCity.name}
+          temp={temperature}
+          tempMax={temperatureMax}
+          tempMin={temperatureMin}
+          humidity={displayMain.humidity}
+          sea_level={displayMain.sea_level}
+          speed={displayWind.speed}
+          sunrise={sunrise_date}
+          sunset={sunset_date}
+        />
+      )}
     </>
   );
 }
