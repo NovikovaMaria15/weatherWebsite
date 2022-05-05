@@ -5,7 +5,6 @@ import { WiDayCloudy } from 'react-icons/wi';
 import * as S from './WeatherItemsStyles';
 
 export function WeatherItems({
-  name,
   tempMax,
   tempMin,
   humidity,
@@ -16,7 +15,6 @@ export function WeatherItems({
 }: any) {
   return (
     <>
-      <S.Name> {name}</S.Name>
       <div> Максимальная температура {tempMax} °</div>
       <div> Минимальная температура {tempMin} °</div>
       <div> Влажность {humidity} %</div>

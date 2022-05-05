@@ -29,6 +29,12 @@ export const InputHome = styled.input`
   font-size: 150%;
 `;
 
+export const Name = styled.h3`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const SearchIcon = styled.div`
   cursor: pointer;
   margin-left: 820px;

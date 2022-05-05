@@ -1,11 +1,5 @@
 import styled from 'styled-components';
 
-export const Name = styled.h3`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
 export const Choose = styled.div`
   display: flex;
   align-items: center;
@@ -17,8 +11,7 @@ export const Choose = styled.div`
 `;
 
 export const Date = styled.div`
-  padding-top: 50px;
-  padding-bottom: 20px;
+  display: flex;
 `;
 
 export const ChooseTemp = styled.div`
@@ -31,7 +24,7 @@ export const Text = styled.div`
 
 export const M = styled.div`
   display: inline-block;
-  margin-left: 100px;
+  margin-left: 50px;
 `;
 
 export const Alignment = styled.div`

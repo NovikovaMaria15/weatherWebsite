@@ -27,7 +27,7 @@ export function Home() {
   //   (state: RootState) => state.weekWeather.forecastday
   // );
   // state.daily = action.payload.response.daily;
-  // const displayWind = useSelector((state: RootState) => state.userWeather.daily);
+  const weekDaily = useSelector((state: RootState) => state.weekWeather.daily);
 
   const anyCity = useCallback(() => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -77,10 +77,24 @@ export function Home() {
   const temperatureMax = Math.round(displayMain.temp_max - 273);
   const temperatureMin = Math.round(displayMain.temp_min - 273);
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+  // const dat = new Date(weekDaily.dt);
+  // const dt = dat.getDate();
+
   // console.log('displayCity', displayCity);
   // console.log('displayMain', displayMain);
   // console.log('displaySys', displaySys);
   // console.log('displaySys', displayWind);
+
+  console.log('weekDaily', weekDaily);
+
+  const t = new Date('1651741200').toLocaleString();
+  console.log('1651741200', t);
+
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+  const today = new Date(weekDaily.dt);
+  today.setDate(today.getDate() - 7);
+  const dat = new Date(today).toLocaleDateString();
 
   return (
     <>
@@ -101,22 +115,28 @@ export function Home() {
           onKeyPress={handleKeyDown}
           placeholder="Введите название города"
         />
+        <S.Name>{displayCity.name}</S.Name>
         <S.SearchIcon>
           <IoSearch onClick={withdraw} />
         </S.SearchIcon>
       </S.Container>
-      {/* {weekForecastday.map((weekForecastday: any) => (
+      {weekDaily.map((weekDaily: any) => (
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         <Weather
-          key={weekForecastday.date_epoch}
-          date={weekForecastday.date}
+          key={weekDaily.dt}
+          tempDay={Math.round(weekDaily.temp.day - 273)}
+          // // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
           // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-          chooseTemp={Math.round(weekForecastday.day.avgtemp_c)}
-          text={weekForecastday.day.condition.text}
+          dtDay={new Date(weekDaily.dt * 1000).toLocaleDateString()}
+          // dtDay={dt}
+          textDay={weekDaily.weather[0].description}
+          mainDay={weekDaily.weather[0].main}
+          iconDay={weekDaily.weather[0].icon}
+          src={`http://openweathermap.org/img/wn/${weekDaily.weather[0].icon}@2x.png`}
         />
-      ))} */}
+      ))}
       {open && (
         <WeatherItems
-          name={displayCity.name}
           tempMax={temperatureMax}
           tempMin={temperatureMin}
           humidity={displayMain.humidity}
