@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { weekWeather } from './weekWeatherThunk';
 
-const initialState: { current: any } = {
-  current: [],
+const initialState: { daily: any } = {
+  // forecastday: [],
+  daily: [],
 };
 
 const weekWeatherSlise = createSlice({
@@ -15,7 +16,8 @@ const weekWeatherSlise = createSlice({
       console.log('state', state);
       // eslint-disable-next-line no-param-reassign
       // state.data = action.payload.response;
-      state.current = action.payload.response.current;
+      // state.forecastday = action.payload.response.forecast.forecastday;
+      state.daily = action.payload.response.daily;
     },
   },
 });

@@ -13,6 +13,7 @@ import { WeatherItems } from '../WeatherItems/WeatherItems';
 import { userWeather } from '../../store/userWeather/userWeatherThunk';
 import { weekWeather } from '../../store/weekWeather/weekWeatherThunk';
 import { Header } from '../components/Header/Header';
+import { Weather } from '../WeatherItems/Weather';
 
 export function Home() {
   const dispatch = useAppDispatch();
@@ -22,9 +23,11 @@ export function Home() {
   const displayMain = useSelector((state: RootState) => state.userWeather.main);
   const displaySys = useSelector((state: RootState) => state.userWeather.sys);
   const displayWind = useSelector((state: RootState) => state.userWeather.wind);
-  const weekCurrent = useSelector(
-    (state: RootState) => state.weekWeather.current
-  );
+  // const weekForecastday = useSelector(
+  //   (state: RootState) => state.weekWeather.forecastday
+  // );
+  // state.daily = action.payload.response.daily;
+  // const displayWind = useSelector((state: RootState) => state.userWeather.daily);
 
   const anyCity = useCallback(() => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -35,8 +38,6 @@ export function Home() {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     dispatch(weekWeather({ cityy: city1 }));
   }, [dispatch, city1]);
-
-  console.log('weekCurrent', weekCurrent);
 
   const handleChangeCity: ChangeEventHandler<HTMLInputElement> = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
@@ -81,10 +82,6 @@ export function Home() {
   // console.log('displaySys', displaySys);
   // console.log('displaySys', displayWind);
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-  const values = Object.values(weekCurrent);
-  console.log('values', values);
-
   return (
     <>
       <Header />
@@ -108,11 +105,18 @@ export function Home() {
           <IoSearch onClick={withdraw} />
         </S.SearchIcon>
       </S.Container>
+      {/* {weekForecastday.map((weekForecastday: any) => (
+        <Weather
+          key={weekForecastday.date_epoch}
+          date={weekForecastday.date}
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+          chooseTemp={Math.round(weekForecastday.day.avgtemp_c)}
+          text={weekForecastday.day.condition.text}
+        />
+      ))} */}
       {open && (
         <WeatherItems
-          obj={values[2]}
           name={displayCity.name}
-          temp={temperature}
           tempMax={temperatureMax}
           tempMin={temperatureMin}
           humidity={displayMain.humidity}
