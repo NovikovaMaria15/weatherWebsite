@@ -14,14 +14,14 @@ export function WeatherItems({
   sunset,
 }: any) {
   return (
-    <>
-      <div> Максимальная температура {tempMax} °</div>
-      <div> Минимальная температура {tempMin} °</div>
-      <div> Влажность {humidity} %</div>
-      <div> Давление воздуха {sea_level} гПа</div>
-      <div> Скорость ветра {speed} км/ч</div>
-      <div> Восход солнца {sunrise}</div>
-      <div> Заход солнца {sunset}</div>
-    </>
+    <S.AdditionalData>
+      <div> Maximum temperature {tempMax} °</div>
+      <div> Minimum temperature {tempMin} °</div>
+      <div> Humidity {humidity} %</div>
+      <div> Air pressure {sea_level} hPa</div>
+      <div> Wind speed {speed} km/h</div>
+      <div> Sunrise {sunrise}</div>
+      <div> Sunset {sunset}</div>
+    </S.AdditionalData>
   );
 }

@@ -23,10 +23,7 @@ export function Home() {
   const displayMain = useSelector((state: RootState) => state.userWeather.main);
   const displaySys = useSelector((state: RootState) => state.userWeather.sys);
   const displayWind = useSelector((state: RootState) => state.userWeather.wind);
-  // const weekForecastday = useSelector(
-  //   (state: RootState) => state.weekWeather.forecastday
-  // );
-  // state.daily = action.payload.response.daily;
+
   const weekDaily = useSelector((state: RootState) => state.weekWeather.daily);
 
   const anyCity = useCallback(() => {
@@ -73,38 +70,18 @@ export function Home() {
   date1.setTime(sunrise);
   const sunrise_date = date1.getHours() + ':' + date1.getMinutes();
 
-  const temperature = Math.round(displayMain.temp - 273);
   const temperatureMax = Math.round(displayMain.temp_max - 273);
   const temperatureMin = Math.round(displayMain.temp_min - 273);
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-  // const dat = new Date(weekDaily.dt);
-  // const dt = dat.getDate();
-
-  // console.log('displayCity', displayCity);
-  // console.log('displayMain', displayMain);
-  // console.log('displaySys', displaySys);
-  // console.log('displaySys', displayWind);
-
-  console.log('weekDaily', weekDaily);
-
-  const t = new Date('1651741200').toLocaleString();
-  console.log('1651741200', t);
-
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-  const today = new Date(weekDaily.dt);
-  today.setDate(today.getDate() - 7);
-  const dat = new Date(today).toLocaleDateString();
-
   return (
-    <>
+    <S.Header1>
       <Header />
       <S.Photo
         alt="pop"
         src="https://vyborg.tv/wp-content/uploads/2022/03/pogoda-oblaka-800x445.jpg}"
       />
       <S.Location>
-        <S.SearchTitle>Найти прогноз</S.SearchTitle>
+        <S.SearchTitle>Find forecast</S.SearchTitle>
       </S.Location>
       <S.Container>
         <S.InputHome
@@ -115,20 +92,25 @@ export function Home() {
           onKeyPress={handleKeyDown}
           placeholder="Введите название города"
         />
-        <S.Name>{displayCity.name}</S.Name>
+        <S.WeaherName>
+          {open && <S.Weather>Weather in</S.Weather>}
+          {displayCity.name}
+        </S.WeaherName>
         <S.SearchIcon>
           <IoSearch onClick={withdraw} />
         </S.SearchIcon>
       </S.Container>
       {weekDaily.map((weekDaily: any) => (
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         <Weather
           key={weekDaily.dt}
           tempDay={Math.round(weekDaily.temp.day - 273)}
-          // // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-          dtDay={new Date(weekDaily.dt * 1000).toLocaleDateString()}
-          // dtDay={dt}
+          weekdayDay={new Date(weekDaily.dt * 1000).toLocaleString('default', {
+            weekday: 'long',
+          })}
+          dtDay={new Date(weekDaily.dt * 1000).toLocaleString('default', {
+            month: 'long',
+            day: 'numeric',
+          })}
           textDay={weekDaily.weather[0].description}
           mainDay={weekDaily.weather[0].main}
           iconDay={weekDaily.weather[0].icon}
@@ -146,6 +128,6 @@ export function Home() {
           sunset={sunset_date}
         />
       )}
-    </>
+    </S.Header1>
   );
 }

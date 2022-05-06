@@ -8,10 +8,22 @@ export const Choose = styled.div`
   box-shadow: 0px 0px 12px -1px rgba(34, 60, 80, 0.2);
   height: 250px;
   width: 150px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  background-color: white;
 `;
 
-export const Date = styled.div`
-  display: flex;
+export const AdditionalData = styled.div`
+  padding-left: 50px;
+`;
+
+export const weekdayDay = styled.div`
+  padding-top: 20px;
+`;
+
+export const Indent = styled.div`
+  padding-top: 10px;
+  padding-bottom: 10px;
 `;
 
 export const ChooseTemp = styled.div`

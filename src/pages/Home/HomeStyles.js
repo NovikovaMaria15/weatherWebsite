@@ -1,5 +1,13 @@
 import styled from 'styled-components';
 
+export const Header1 = styled.div`
+  min-width: 100vw;
+  width: 100%;
+  min-height: 100vw;
+  height: 100%;
+  background-color: #fcfcfc;
+`;
+
 export const Photo = styled.img`
   min-width: 100vw;
   height: 100%;
@@ -8,6 +16,7 @@ export const Photo = styled.img`
   filter: brightness(92%);
   z-index: auto;
 `;
+
 export const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -29,10 +38,20 @@ export const InputHome = styled.input`
   font-size: 150%;
 `;
 
-export const Name = styled.h3`
+export const WeaherName = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  padding-bottom: 300px;
+  padding-right: 680px;
+  color: white;
+  text-shadow: 0px 0px 3px #000000;
+  font-size: 1.1em;
+`;
+
+export const Weather = styled.div`
+  padding-right: 5px;
 `;
 
 export const SearchIcon = styled.div`

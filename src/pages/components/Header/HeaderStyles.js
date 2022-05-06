@@ -7,6 +7,7 @@ export const HeaderWeather = styled.div`
   box-shadow: 0px 6px 14px -11px rgba(34, 60, 80, 0.43);
   margin-bottom: 50px;
   padding-left: 50px;
+  background-color: white;
 `;
 
 export const HeaderIcon = styled.div`
