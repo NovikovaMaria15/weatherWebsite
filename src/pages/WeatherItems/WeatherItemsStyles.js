@@ -11,6 +11,11 @@ export const Choose = styled.div`
   margin-top: 50px;
   margin-bottom: 50px;
   background-color: white;
+  border-radius: 5px;
+
+  &&: hover {
+    background-color: #dde4f8;
+  }
 `;
 
 export const AdditionalData = styled.div`
@@ -18,7 +23,7 @@ export const AdditionalData = styled.div`
 `;
 
 export const weekdayDay = styled.div`
-  padding-top: 20px;
+  margin-top: 20px;
 `;
 
 export const Indent = styled.div`
@@ -35,7 +40,8 @@ export const Text = styled.div`
 `;
 
 export const M = styled.div`
-  display: inline-block;
+  display: flex;
+  flex-direction: row;
   margin-left: 50px;
 `;
 
@@ -43,4 +49,8 @@ export const Alignment = styled.div`
   display: flex;
   justify-content: center;
   justify-content: center;
+`;
+
+export const Today = styled.div`
+  font-weight: bold;
 `;

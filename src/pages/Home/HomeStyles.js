@@ -43,7 +43,7 @@ export const WeaherName = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
-  padding-bottom: 300px;
+  margin-bottom: 300px;
   padding-right: 680px;
   color: white;
   text-shadow: 0px 0px 3px #000000;

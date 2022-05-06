@@ -14,6 +14,7 @@ import { userWeather } from '../../store/userWeather/userWeatherThunk';
 import { weekWeather } from '../../store/weekWeather/weekWeatherThunk';
 import { Header } from '../components/Header/Header';
 import { Weather } from '../WeatherItems/Weather';
+import { Current } from '../WeatherItems/Current';
 
 export function Home() {
   const dispatch = useAppDispatch();
@@ -25,6 +26,9 @@ export function Home() {
   const displayWind = useSelector((state: RootState) => state.userWeather.wind);
 
   const weekDaily = useSelector((state: RootState) => state.weekWeather.daily);
+  const currentDay = useSelector(
+    (state: RootState) => state.weekWeather.current
+  );
 
   const anyCity = useCallback(() => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -73,6 +77,8 @@ export function Home() {
   const temperatureMax = Math.round(displayMain.temp_max - 273);
   const temperatureMin = Math.round(displayMain.temp_min - 273);
 
+  console.log('currentDay', currentDay);
+
   return (
     <S.Header1>
       <Header />
@@ -100,23 +106,36 @@ export function Home() {
           <IoSearch onClick={withdraw} />
         </S.SearchIcon>
       </S.Container>
-      {weekDaily.map((weekDaily: any) => (
-        <Weather
-          key={weekDaily.dt}
-          tempDay={Math.round(weekDaily.temp.day - 273)}
-          weekdayDay={new Date(weekDaily.dt * 1000).toLocaleString('default', {
+      <div style={{ display: 'flex' }}>
+        {weekDaily.map((weekDaily: any) => (
+          <Weather
+            key={weekDaily.dt}
+            tempDay={Math.round(weekDaily.temp.day - 273)}
+            weekdayDay={new Date(weekDaily.dt * 1000).toLocaleString(
+              'default',
+              { weekday: 'long' }
+            )}
+            dtDay={new Date(weekDaily.dt * 1000).toLocaleString('default', {
+              month: 'long',
+              day: 'numeric',
+            })}
+            textDay={weekDaily.weather[0].description}
+            iconDay={weekDaily.weather[0].icon}
+            src={`http://openweathermap.org/img/wn/${weekDaily.weather[0].icon}@2x.png`}
+          />
+        ))}
+      </div>
+
+      {open && (
+        <Current
+          dayCurrent={new Date(currentDay.dt * 1000).toLocaleString('default', {
             weekday: 'long',
-          })}
-          dtDay={new Date(weekDaily.dt * 1000).toLocaleString('default', {
             month: 'long',
             day: 'numeric',
           })}
-          textDay={weekDaily.weather[0].description}
-          mainDay={weekDaily.weather[0].main}
-          iconDay={weekDaily.weather[0].icon}
-          src={`http://openweathermap.org/img/wn/${weekDaily.weather[0].icon}@2x.png`}
         />
-      ))}
+      )}
+
       {open && (
         <WeatherItems
           tempMax={temperatureMax}

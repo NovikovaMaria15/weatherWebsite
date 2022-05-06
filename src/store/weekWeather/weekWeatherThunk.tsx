@@ -10,7 +10,7 @@ export const weekWeather = createAsyncThunk(
         `https://api.openweathermap.org/geo/1.0/direct?q=${cityy}&appid=e6cc3ee3472e4dcd0a11df732c0b2c29`
       );
       const responsee = await axios.get(
-        `https://api.openweathermap.org/data/2.5/onecall?lat=${response.data[0].lat}&lon=${response.data[0].lon}&appid=e6cc3ee3472e4dcd0a11df732c0b2c29`
+        `https://api.openweathermap.org/data/2.5/onecall?lat=${response.data[0].lat}&lon=${response.data[0].lon}&lang=ru&appid=e6cc3ee3472e4dcd0a11df732c0b2c29`
         // `https://api.openweathermap.org/data/2.5/onecall?lat=60.99&lon=30.9&appid=e6cc3ee3472e4dcd0a11df732c0b2c29`
       );
       // console.log('city', cityy);

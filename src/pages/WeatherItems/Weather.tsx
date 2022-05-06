@@ -4,14 +4,7 @@ import { IoSearch } from 'react-icons/io5';
 import { WiDayCloudy } from 'react-icons/wi';
 import * as S from './WeatherItemsStyles';
 
-export function Weather({
-  tempDay,
-  textDay,
-  dtDay,
-  mainDay,
-  src,
-  weekdayDay,
-}: any) {
+export function Weather({ tempDay, textDay, dtDay, src, weekdayDay }: any) {
   return (
     <>
       <S.M>
@@ -20,7 +13,6 @@ export function Weather({
             <S.weekdayDay>{weekdayDay}</S.weekdayDay>
             <S.Indent>{dtDay}</S.Indent>
             <div>{tempDay}°</div>
-            <S.Indent>{mainDay}</S.Indent>
             <div>{textDay}</div>
             <img src={src} alt="alt" />
           </S.Choose>
