@@ -75,3 +75,9 @@ export const Location = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export const AlignmentIconsWeek = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+`;

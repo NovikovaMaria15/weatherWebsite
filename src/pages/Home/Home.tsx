@@ -7,7 +7,6 @@ import React, {
 import { useSelector } from 'react-redux';
 import { useAppDispatch, RootState } from '../../store/store';
 import { IoSearch } from 'react-icons/io5';
-import { WiDayCloudy } from 'react-icons/wi';
 import * as S from './HomeStyles';
 import { WeatherItems } from '../WeatherItems/WeatherItems';
 import { userWeather } from '../../store/userWeather/userWeatherThunk';
@@ -77,8 +76,6 @@ export function Home() {
   const temperatureMax = Math.round(displayMain.temp_max - 273);
   const temperatureMin = Math.round(displayMain.temp_min - 273);
 
-  console.log('currentDay', currentDay);
-
   return (
     <S.Header1>
       <Header />
@@ -87,7 +84,7 @@ export function Home() {
         src="https://vyborg.tv/wp-content/uploads/2022/03/pogoda-oblaka-800x445.jpg}"
       />
       <S.Location>
-        <S.SearchTitle>Find forecast</S.SearchTitle>
+        <S.SearchTitle>Найти прогноз</S.SearchTitle>
       </S.Location>
       <S.Container>
         <S.InputHome
@@ -99,14 +96,14 @@ export function Home() {
           placeholder="Введите название города"
         />
         <S.WeaherName>
-          {open && <S.Weather>Weather in</S.Weather>}
+          {open && <S.Weather>Погода в</S.Weather>}
           {displayCity.name}
         </S.WeaherName>
         <S.SearchIcon>
           <IoSearch onClick={withdraw} />
         </S.SearchIcon>
       </S.Container>
-      <div style={{ display: 'flex' }}>
+      <S.AlignmentIconsWeek>
         {weekDaily.map((weekDaily: any) => (
           <Weather
             key={weekDaily.dt}
@@ -124,8 +121,7 @@ export function Home() {
             src={`http://openweathermap.org/img/wn/${weekDaily.weather[0].icon}@2x.png`}
           />
         ))}
-      </div>
-
+      </S.AlignmentIconsWeek>
       {open && (
         <Current
           dayCurrent={new Date(currentDay.dt * 1000).toLocaleString('default', {
