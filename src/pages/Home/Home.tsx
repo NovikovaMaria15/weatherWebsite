@@ -14,11 +14,13 @@ import { weekWeather } from '../../store/weekWeather/weekWeatherThunk';
 import { Header } from '../components/Header/Header';
 import { Weather } from '../WeatherItems/Weather';
 import { Current } from '../WeatherItems/Current';
+import { WeatherDay } from '../WeatherItems/WeatherDay';
 
 export function Home() {
   const dispatch = useAppDispatch();
   const [city1, setCity] = useState('');
   const [open, setOpen] = useState(false);
+  const [dayDay, alignmentDayDay] = useState(false);
   const displayCity = useSelector((state: RootState) => state.userWeather.data);
   const displayMain = useSelector((state: RootState) => state.userWeather.main);
   const displaySys = useSelector((state: RootState) => state.userWeather.sys);
@@ -28,6 +30,11 @@ export function Home() {
   const currentDay = useSelector(
     (state: RootState) => state.weekWeather.current
   );
+
+  // const day = useCallback(() => {
+  //   // eslint-disable-next-line @typescript-eslint/no-floating-promises
+  //   dispatch(weekDaily);
+  // }, [dispatch]);
 
   const anyCity = useCallback(() => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -61,6 +68,16 @@ export function Home() {
     [withdraw]
   );
 
+  const alignmentDay = useCallback(() => {
+    alignmentDayDay(true);
+  }, []);
+
+  // const alignmentDayDay = useCallback(() => {
+  //   alignmentDay();
+  // }, [withdraw]);
+
+  // console.log('weekDaily', weekDaily);
+
   const sunset = displaySys.sunset;
   const date = new Date();
   // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
@@ -75,6 +92,41 @@ export function Home() {
 
   const temperatureMax = Math.round(displayMain.temp_max - 273);
   const temperatureMin = Math.round(displayMain.temp_min - 273);
+
+  // const anyyyyy = useCallback(() => {
+  //   dispatch(weekDaily).then(() => {
+  //     if (alignmentDay) {
+  //       displayWind;
+  //     }
+  //   });
+  // }, [dispatch]);
+
+  console.log('weekDaily', weekDaily);
+
+  // const dayy = weekDaily.find((weekDaily: any) => {
+  //   weekDaily.humidity === 51;
+  // });
+
+  // const dayy = weekDaily.find((weekDaily: any) => weekDaily.humidity);
+
+  // const dayy = weekDaily.find((weekDaily: any) => weekDaily.humidity);
+  // const dayy = weekDaily.find(week: any) =>
+  // { week.humidity };
+  // return dayy;;
+
+  // const dayy = weekDaily.find((weekDaily: any) => (
+  //   <div>{weekDaily.humidity}</div>
+  // ));
+  // return dayy;
+
+  const dayy = weekDaily.find((week: any) => {
+    if (week.humidity) {
+      return true;
+    }
+  });
+  console.log('dayDay', dayDay);
+  console.log('dayy', dayy);
+  console.log('currentDay', currentDay);
 
   return (
     <S.Header1>
@@ -103,7 +155,7 @@ export function Home() {
           <IoSearch onClick={withdraw} />
         </S.SearchIcon>
       </S.Container>
-      <S.AlignmentIconsWeek>
+      <S.AlignmentIconsWeek onClick={alignmentDay}>
         {weekDaily.map((weekDaily: any) => (
           <Weather
             key={weekDaily.dt}
@@ -131,7 +183,6 @@ export function Home() {
           })}
         />
       )}
-
       {open && (
         <WeatherItems
           tempMax={temperatureMax}
@@ -143,6 +194,7 @@ export function Home() {
           sunset={sunset_date}
         />
       )}
+      {dayDay && <WeatherDay dayy={dayy} />}
     </S.Header1>
   );
 }
