@@ -1,5 +1,5 @@
 import React from 'react';
-import * as S from './WeatherItemsStyles';
+import * as S from '../WeatherItemsStyles';
 
 export function Current({ dayCurrent }: any) {
   return (

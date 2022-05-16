@@ -8,19 +8,20 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch, RootState } from '../../store/store';
 import { IoSearch } from 'react-icons/io5';
 import * as S from './HomeStyles';
-import { WeatherItems } from '../WeatherItems/WeatherItems';
+import { WeatherItems } from '../components/WeatherItems/WeatherItems';
 import { userWeather } from '../../store/userWeather/userWeatherThunk';
 import { weekWeather } from '../../store/weekWeather/weekWeatherThunk';
 import { Header } from '../components/Header/Header';
-import { Weather } from '../WeatherItems/Weather';
-import { Current } from '../WeatherItems/Current';
-import { WeatherDay } from '../WeatherItems/WeatherDay';
+import { Weather } from '../components/Weather/Weather';
+import { Current } from '../components/Current/Current';
+import { WeatherDay } from '../components/WeatherDay/WeatherDay';
 
 export function Home() {
   const dispatch = useAppDispatch();
   const [city1, setCity] = useState('');
   const [open, setOpen] = useState(false);
   const [dayDay, alignmentDayDay] = useState(false);
+  const [dayDayDay, setDayDayDay]: any[] = useState();
   const displayCity = useSelector((state: RootState) => state.userWeather.data);
   const displayMain = useSelector((state: RootState) => state.userWeather.main);
   const displaySys = useSelector((state: RootState) => state.userWeather.sys);
@@ -68,8 +69,16 @@ export function Home() {
     [withdraw]
   );
 
-  const alignmentDay = useCallback(() => {
+  const alignmentDay = useCallback((dt: any) => {
     alignmentDayDay(true);
+    const WeekDayy = weekDaily.find((week: any) => {
+      if (week.dt === dt) {
+        return true;
+      }
+    });
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    setDayDayDay(WeekDayy);
+    console.log('WeekDayyyyyyyyy', WeekDayy);
   }, []);
 
   // const alignmentDayDay = useCallback(() => {
@@ -124,6 +133,7 @@ export function Home() {
       return true;
     }
   });
+
   console.log('dayDay', dayDay);
   console.log('dayy', dayy);
   console.log('currentDay', currentDay);
@@ -155,23 +165,29 @@ export function Home() {
           <IoSearch onClick={withdraw} />
         </S.SearchIcon>
       </S.Container>
-      <S.AlignmentIconsWeek onClick={alignmentDay}>
+      <S.AlignmentIconsWeek>
         {weekDaily.map((weekDaily: any) => (
-          <Weather
+          // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+          <div
+            className="click"
             key={weekDaily.dt}
-            tempDay={Math.round(weekDaily.temp.day - 273)}
-            weekdayDay={new Date(weekDaily.dt * 1000).toLocaleString(
-              'default',
-              { weekday: 'long' }
-            )}
-            dtDay={new Date(weekDaily.dt * 1000).toLocaleString('default', {
-              month: 'long',
-              day: 'numeric',
-            })}
-            textDay={weekDaily.weather[0].description}
-            iconDay={weekDaily.weather[0].icon}
-            src={`http://openweathermap.org/img/wn/${weekDaily.weather[0].icon}@2x.png`}
-          />
+            onClick={() => alignmentDay(weekDaily.dt)}
+          >
+            <Weather
+              tempDay={Math.round(weekDaily.temp.day - 273)}
+              weekdayDay={new Date(weekDaily.dt * 1000).toLocaleString(
+                'default',
+                { weekday: 'long' }
+              )}
+              dtDay={new Date(weekDaily.dt * 1000).toLocaleString('default', {
+                month: 'long',
+                day: 'numeric',
+              })}
+              textDay={weekDaily.weather[0].description}
+              iconDay={weekDaily.weather[0].icon}
+              src={`http://openweathermap.org/img/wn/${weekDaily.weather[0].icon}@2x.png`}
+            />
+          </div>
         ))}
       </S.AlignmentIconsWeek>
       {open && (
@@ -194,7 +210,7 @@ export function Home() {
           sunset={sunset_date}
         />
       )}
-      {dayDay && <WeatherDay dayy={dayy} />}
+      {dayDayDay && <WeatherDay dayy={dayDayDay.clouds} />}
     </S.Header1>
   );
 }
