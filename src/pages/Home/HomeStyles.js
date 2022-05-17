@@ -17,6 +17,19 @@ export const Photo = styled.img`
   z-index: auto;
 `;
 
+export const SearchTitle = styled.h1`
+  position: absolute;
+  top: 200px;
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+`;
+
+export const Location = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -50,10 +63,6 @@ export const WeaherName = styled.div`
   font-size: 1.1em;
 `;
 
-export const Weather = styled.div`
-  padding-right: 5px;
-`;
-
 export const SearchIcon = styled.div`
   cursor: pointer;
   margin-left: 820px;
@@ -63,21 +72,6 @@ export const SearchIcon = styled.div`
   color: grey;
 `;
 
-export const SearchTitle = styled.h1`
-  position: absolute;
-  top: 200px;
-  color: white;
-  text-shadow: 2px 2px 4px #000000;
-`;
-
-export const Location = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const AlignmentIconsWeek = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+export const Weather = styled.div`
+  padding-right: 5px;
 `;

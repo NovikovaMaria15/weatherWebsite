@@ -11,7 +11,6 @@ export const weekWeather = createAsyncThunk(
       const responsee = await axios.get(
         `https://api.openweathermap.org/data/2.5/onecall?lat=${response.data[0].lat}&lon=${response.data[0].lon}&lang=ru&appid=e6cc3ee3472e4dcd0a11df732c0b2c29`
       );
-      console.log('response', responsee);
       return { cityy, response: responsee.data };
     } catch {
       return rejectWithValue(null);

@@ -3,17 +3,19 @@ import styled from 'styled-components';
 export const Choose = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
   padding-left: 10px;
   box-shadow: 0px 0px 12px -1px rgba(34, 60, 80, 0.2);
   height: 250px;
   width: 150px;
-  margin-top: 100px;
-  margin-bottom: 100px;
   background-color: white;
   border-radius: 5px;
+  cursor: pointer;
+
   &&: hover {
     background-color: #dde4f8;
+    transition: 0.8s;
   }
 `;
 
@@ -52,7 +54,7 @@ export const Today = styled.div`
 export const Line = styled.div`
   border-left: 1px solid #bebebe;
   height: 165px;
-  padding-right: 50px;
+  margin-right: 50px;
   margin-top: 12px;
 `;
 
@@ -60,10 +62,6 @@ export const ThinOutline = styled.div`
   font-weight: 100;
   display: inline-block;
   padding-top: 10px;
-`;
-
-export const AlignmentFromLine = styled.div`
-  display: flex;
 `;
 
 export const Stacking = styled.div`
