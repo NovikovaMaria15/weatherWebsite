@@ -12,6 +12,7 @@ import { userWeather } from '../../store/userWeather/userWeatherThunk';
 import { weekWeather } from '../../store/weekWeather/weekWeatherThunk';
 import { Header } from '../components/Header/Header';
 import { WeekDay } from '../components/WeekDay/WeekDay';
+import { EndPage } from '../components/EndPage/EndPage';
 
 export function Home() {
   const dispatch = useAppDispatch();
@@ -52,33 +53,36 @@ export function Home() {
   );
 
   return (
-    <S.Header1>
-      <Header />
-      <S.Photo
-        alt="pop"
-        src="https://vyborg.tv/wp-content/uploads/2022/03/pogoda-oblaka-800x445.jpg}"
-      />
-      <S.Location>
-        <S.SearchTitle>Найти прогноз</S.SearchTitle>
-      </S.Location>
-      <S.Container>
-        <S.InputHome
-          type="text"
-          name="text"
-          value={city1}
-          onChange={handleChangeCity}
-          onKeyPress={handleKeyDown}
-          placeholder="Введите название города"
+    <>
+      <S.Header1>
+        <Header />
+        <S.Photo
+          alt="pop"
+          src="https://vyborg.tv/wp-content/uploads/2022/03/pogoda-oblaka-800x445.jpg}"
         />
-        <S.WeaherName>
-          {open && <S.Weather>Погода в</S.Weather>}
-          {displayCity.name}
-        </S.WeaherName>
-        <S.SearchIcon>
-          <IoSearch onClick={withdraw} />
-        </S.SearchIcon>
-      </S.Container>
-      {open && <WeekDay />}
-    </S.Header1>
+        <S.Location>
+          <S.SearchTitle>Найти прогноз</S.SearchTitle>
+        </S.Location>
+        <S.Container>
+          <S.InputHome
+            type="text"
+            name="text"
+            value={city1}
+            onChange={handleChangeCity}
+            onKeyPress={handleKeyDown}
+            placeholder="Введите название города"
+          />
+          <S.WeaherName>
+            {open && <S.Weather>Погода в</S.Weather>}
+            {displayCity.name}
+          </S.WeaherName>
+          <S.SearchIcon>
+            <IoSearch onClick={withdraw} />
+          </S.SearchIcon>
+        </S.Container>
+        {open && <WeekDay />}
+      </S.Header1>
+      <EndPage />
+    </>
   );
 }

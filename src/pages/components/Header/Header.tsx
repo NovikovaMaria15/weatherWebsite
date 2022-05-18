@@ -4,13 +4,11 @@ import * as S from './HeaderStyles';
 
 export function Header() {
   return (
-    <>
-      <S.HeaderWeather>
-        <S.HeaderName>Weather</S.HeaderName>
-        <S.HeaderIcon>
-          <WiDayCloudy />
-        </S.HeaderIcon>
-      </S.HeaderWeather>
-    </>
+    <S.HeaderWeather>
+      <S.HeaderName>Weather</S.HeaderName>
+      <S.HeaderIcon>
+        <WiDayCloudy />
+      </S.HeaderIcon>
+    </S.HeaderWeather>
   );
 }

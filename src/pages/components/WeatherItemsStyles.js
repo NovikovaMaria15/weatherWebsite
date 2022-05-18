@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const Choose = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
   padding-left: 10px;
   box-shadow: 0px 0px 12px -1px rgba(34, 60, 80, 0.2);
@@ -27,6 +26,7 @@ export const AdditionalData = styled.div`
 
 export const weekdayDay = styled.div`
   margin-top: 20px;
+  font-weight: bold;
 `;
 
 export const Indent = styled.div`

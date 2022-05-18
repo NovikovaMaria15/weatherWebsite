@@ -19,6 +19,7 @@ export function WeekDay() {
       const WeekDayy = weekDaily.find((week: any) => {
         console.log('dt', dt);
         console.log('week.dt', week.dt);
+        console.log('week', week);
         if (week.dt === dt) {
           return true;
         }
@@ -29,6 +30,24 @@ export function WeekDay() {
     },
     [weekDaily]
   );
+
+  // const alignmentDay = useCallback(
+  //   (dt: any) => {
+  //   const WeekDayy = weekDaily.find((week: any) => {
+  //   console.log('week[0]', week.dt);
+  //   if (week.dt === dt) {
+  //   return true;
+  //   } else week.dt !== dt;
+  //   {
+  //   return true;
+  //   }
+  //   });
+  //   setDayDayDay(WeekDayy);
+  //   console.log('WeekDayyyyyyyyy', WeekDayy);
+  //   console.log('weekDaily', weekDaily);
+  //   },
+  //   [weekDaily]
+  //   );
 
   console.log('weekDaily', weekDaily);
   console.log('dayDayDay', dayDayDay);
