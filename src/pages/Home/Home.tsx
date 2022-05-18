@@ -13,6 +13,8 @@ import { weekWeather } from '../../store/weekWeather/weekWeatherThunk';
 import { Header } from '../components/Header/Header';
 import { WeekDay } from '../components/WeekDay/WeekDay';
 import { EndPage } from '../components/EndPage/EndPage';
+import { HourlyDay } from '../components/HourlyDay/HourlyDay';
+
 export function Home() {
   const dispatch = useAppDispatch();
   const [city1, setCity] = useState('');
@@ -82,6 +84,7 @@ export function Home() {
         {open && <WeekDay />}
       </S.Header1>
       <EndPage />
+      <HourlyDay />
     </>
   );
 }

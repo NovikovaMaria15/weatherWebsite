@@ -13,7 +13,7 @@ export const Choose = styled.div`
   cursor: pointer;
 
   &&: hover {
-    background-color: #dde4f8;
+    background-color: #ccdefd;
     transition: 0.8s;
   }
 `;

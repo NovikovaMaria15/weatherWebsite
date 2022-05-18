@@ -6,8 +6,8 @@ export const HeaderWeather = styled.div`
   align-items: center;
   justify-content: center;
   box-shadow: 0px -7px 23px -11px rgba(34, 60, 80, 0.43);
-  background-color: white;
-  height: 130px;
+  background-color: #e8f0fe;
+  height: 200px;
 `;
 
 export const HeaderIcon = styled.div`
@@ -28,6 +28,8 @@ export const Alignment = styled.div`
 
 export const Year = styled.div`
   color: #808080;
+  font-size: 1.1em;
+  padding-top: 30px;
 `;
 
 export const CenterAlignment = styled.div`
