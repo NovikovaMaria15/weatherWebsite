@@ -1,18 +1,96 @@
-import React, { useState, useCallback } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
-import { WeatherItems } from '../components/WeatherItems/WeatherItems';
+import React from 'react';
+import { VscArrowSmallUp, VscArrowSmallDown } from 'react-icons/vsc';
+import {
+  WiSunrise,
+  WiSunset,
+  WiHumidity,
+  WiStrongWind,
+  WiBarometer,
+} from 'react-icons/wi';
+import * as S from '../components/WeatherItemsStyles';
 
-export function Day() {
-  const weekDaily = useSelector((state: RootState) => state.weekWeather.daily);
-  console.log('weekDaily[0]', weekDaily[0]);
+export function Day({
+  tempMax,
+  tempMin,
+  humidity,
+  sea_level,
+  speed,
+  sunrise,
+  sunset,
+}: any) {
   return (
-    <>
-      <WeatherItems
-        tempMax={Math.round(weekDaily[0].temp.max - 273)}
-        tempMin={Math.round(weekDaily[0].temp.min - 273)}
-        humidity={weekDaily[0].humidity}
-      />
-    </>
+    <S.AdditionalData>
+      <S.Stacking>
+        <S.AligningEachOther>
+          <S.ThinOutline> Максимальная температура </S.ThinOutline>
+          <S.TextAndIcons>
+            <S.IconsSize>
+              <VscArrowSmallUp />
+            </S.IconsSize>
+            {tempMax} °
+          </S.TextAndIcons>
+        </S.AligningEachOther>
+        <S.AligningEachOther>
+          <S.ThinOutline>Минимальная температура </S.ThinOutline>
+          <S.TextAndIcons>
+            <S.IconsSize>
+              <VscArrowSmallDown />
+            </S.IconsSize>
+            {tempMin} °
+          </S.TextAndIcons>
+        </S.AligningEachOther>
+      </S.Stacking>
+      <S.Line />
+      <S.Stacking>
+        <S.AligningEachOther>
+          <S.ThinOutline> Влажность </S.ThinOutline>
+          <S.TextAndIcons>
+            <S.IconsSize>
+              <WiHumidity />
+            </S.IconsSize>
+            {humidity} %
+          </S.TextAndIcons>
+        </S.AligningEachOther>
+        <S.AligningEachOther>
+          <S.ThinOutline>Атмосферное давление </S.ThinOutline>
+          <S.TextAndIcons>
+            <S.IconsSize>
+              <WiBarometer />
+            </S.IconsSize>
+            {sea_level} гПа
+          </S.TextAndIcons>
+        </S.AligningEachOther>
+        <S.AligningEachOther>
+          <S.ThinOutline>Скорость ветра </S.ThinOutline>
+          <S.TextAndIcons>
+            <S.IconsSize>
+              <WiStrongWind />
+            </S.IconsSize>
+            {speed} км/ч
+          </S.TextAndIcons>
+        </S.AligningEachOther>
+      </S.Stacking>
+      <S.Line />
+      <S.Stacking>
+        <S.AligningEachOther>
+          <S.ThinOutline>Восход </S.ThinOutline>
+          <S.TextAndIcons>
+            <S.IconsSize>
+              <WiSunrise />
+            </S.IconsSize>
+            {sunrise}
+          </S.TextAndIcons>
+        </S.AligningEachOther>
+        <S.AligningEachOther>
+          <S.ThinOutline>Закат </S.ThinOutline>
+          <S.TextAndIcons>
+            <S.IconsSize>
+              <WiSunset />
+            </S.IconsSize>
+            {sunset}
+          </S.TextAndIcons>
+        </S.AligningEachOther>
+      </S.Stacking>
+    </S.AdditionalData>
   );
 }

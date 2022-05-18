@@ -5,12 +5,14 @@ import { Weather } from '../../weekComponents/Weather/Weather';
 import { WeatherDay } from '../../weekComponents/WeatherDay/WeatherDay';
 import { WeatherItems } from '../WeatherItems/WeatherItems';
 import { Current } from '../Current/Current';
+import { Day } from '../Day';
 import * as S from './WeekDayStyles';
 
 export function WeekDay() {
   // const [dayDay, alignmentDayDay] = useState(false);
   const [dayDayDay, setDayDayDay]: any[] = useState();
   const [color, setColor]: any[] = useState();
+  const [open, setOpen] = useState(true);
 
   const weekDaily = useSelector((state: RootState) => state.weekWeather.daily);
 
@@ -25,6 +27,7 @@ export function WeekDay() {
         }
       });
       setDayDayDay(WeekDayy);
+      setOpen(true);
       console.log('WeekDayyyyyyyyy', WeekDayy);
       console.log('weekDaily', weekDaily);
     },
@@ -86,6 +89,13 @@ export function WeekDay() {
             month: 'long',
             day: 'numeric',
           })}
+        />
+      )}
+      {open && weekDaily[0] && (
+        <WeatherItems
+          tempMax={Math.round(weekDaily[0].temp.max - 273)}
+          tempMin={Math.round(weekDaily[0].temp.min - 273)}
+          humidity={weekDaily[0].humidity}
         />
       )}
       {dayDayDay && (

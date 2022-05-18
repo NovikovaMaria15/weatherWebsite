@@ -81,7 +81,6 @@ export function Home() {
           </S.SearchIcon>
         </S.Container>
         {open && <WeekDay />}
-        {open && <Day />}
       </S.Header1>
       <EndPage />
     </>
