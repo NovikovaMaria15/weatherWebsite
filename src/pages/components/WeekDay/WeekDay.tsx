@@ -5,7 +5,6 @@ import { Weather } from '../../weekComponents/Weather/Weather';
 import { WeatherDay } from '../../weekComponents/WeatherDay/WeatherDay';
 import { WeatherItems } from '../WeatherItems/WeatherItems';
 import { Current } from '../Current/Current';
-import { Day } from '../Day';
 import * as S from './WeekDayStyles';
 
 export function WeekDay() {
@@ -27,30 +26,12 @@ export function WeekDay() {
         }
       });
       setDayDayDay(WeekDayy);
-      setOpen(true);
+      setOpen(false);
       console.log('WeekDayyyyyyyyy', WeekDayy);
       console.log('weekDaily', weekDaily);
     },
     [weekDaily]
   );
-
-  // const alignmentDay = useCallback(
-  //   (dt: any) => {
-  //   const WeekDayy = weekDaily.find((week: any) => {
-  //   console.log('week[0]', week.dt);
-  //   if (week.dt === dt) {
-  //   return true;
-  //   } else week.dt !== dt;
-  //   {
-  //   return true;
-  //   }
-  //   });
-  //   setDayDayDay(WeekDayy);
-  //   console.log('WeekDayyyyyyyyy', WeekDayy);
-  //   console.log('weekDaily', weekDaily);
-  //   },
-  //   [weekDaily]
-  //   );
 
   console.log('weekDaily', weekDaily);
   console.log('dayDayDay', dayDayDay);
@@ -82,13 +63,17 @@ export function WeekDay() {
           </div>
         ))}
       </S.AlignmentIconsWeek>
-      {dayDayDay && (
+
+      {open && weekDaily[0] && (
         <Current
-          dayCurrent={new Date(dayDayDay.dt * 1000).toLocaleString('default', {
-            weekday: 'long',
-            month: 'long',
-            day: 'numeric',
-          })}
+          dayCurrent={new Date(weekDaily[0].dt * 1000).toLocaleString(
+            'default',
+            {
+              month: 'long',
+              day: 'numeric',
+              weekday: 'long',
+            }
+          )}
         />
       )}
       {open && weekDaily[0] && (
@@ -96,6 +81,29 @@ export function WeekDay() {
           tempMax={Math.round(weekDaily[0].temp.max - 273)}
           tempMin={Math.round(weekDaily[0].temp.min - 273)}
           humidity={weekDaily[0].humidity}
+          sea_level={weekDaily[0].pressure}
+          speed={weekDaily[0].wind_speed}
+          sunrise={new Date(weekDaily[0].sunrise * 1000).toLocaleString(
+            'default',
+            { hour: '2-digit', minute: '2-digit' }
+          )}
+          sunset={new Date(weekDaily[0].sunset * 1000).toLocaleString(
+            'default',
+            {
+              hour: '2-digit',
+              minute: '2-digit',
+            }
+          )}
+        />
+      )}
+
+      {dayDayDay && (
+        <Current
+          dayCurrent={new Date(dayDayDay.dt * 1000).toLocaleString('default', {
+            month: 'long',
+            day: 'numeric',
+            weekday: 'long',
+          })}
         />
       )}
       {dayDayDay && (
