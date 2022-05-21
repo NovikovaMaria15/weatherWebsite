@@ -8,10 +8,10 @@ export const weekWeather = createAsyncThunk(
       const response = await axios.get(
         `https://api.openweathermap.org/geo/1.0/direct?q=${cityy}&appid=4ccd5856fcef61a049f819bbe02ae1cc`
       );
-      const responsee = await axios.get(
+      const getСoordinates = await axios.get(
         `https://api.openweathermap.org/data/2.5/onecall?lat=${response.data[0].lat}&lon=${response.data[0].lon}&lang=ru&appid=4ccd5856fcef61a049f819bbe02ae1cc`
       );
-      return { cityy, response: responsee.data };
+      return { cityy, response: getСoordinates.data };
     } catch {
       return rejectWithValue(null);
     }

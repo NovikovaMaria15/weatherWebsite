@@ -14,7 +14,7 @@ export function Weather({
       <S.weekdayDay>{weekdayDay}</S.weekdayDay>
       <S.Indent>{dtDay}</S.Indent>
       <div>{tempDay}°</div>
-      <div>{textDay}</div>
+      <S.Indent>{textDay}</S.Indent>
       <img src={src} alt="alt" />
       <div>{dayy}</div>
     </S.Choose>
