@@ -6,12 +6,11 @@ export const weekWeather = createAsyncThunk(
   async ({ cityy }: { cityy?: string }, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `https://api.openweathermap.org/geo/1.0/direct?q=${cityy}&appid=e6cc3ee3472e4dcd0a11df732c0b2c29`
+        `https://api.openweathermap.org/geo/1.0/direct?q=${cityy}&appid=4ccd5856fcef61a049f819bbe02ae1cc`
       );
       const responsee = await axios.get(
-        `https://api.openweathermap.org/data/2.5/onecall?lat=${response.data[0].lat}&lon=${response.data[0].lon}&lang=ru&appid=e6cc3ee3472e4dcd0a11df732c0b2c29`
+        `https://api.openweathermap.org/data/2.5/onecall?lat=${response.data[0].lat}&lon=${response.data[0].lon}&lang=ru&appid=4ccd5856fcef61a049f819bbe02ae1cc`
       );
-      console.log('responsee', responsee.data);
       return { cityy, response: responsee.data };
     } catch {
       return rejectWithValue(null);

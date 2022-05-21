@@ -9,32 +9,24 @@ import * as S from './WeekDayStyles';
 
 export function WeekDay() {
   // const [dayDay, alignmentDayDay] = useState(false);
-  const [dayDayDay, setDayDayDay]: any[] = useState();
-  const [color, setColor]: any[] = useState();
+  const [dayDayDay, setDayDayDay]: any[] = useState('');
   const [open, setOpen] = useState(true);
 
   const weekDaily = useSelector((state: RootState) => state.weekWeather.daily);
 
   const alignmentDay = useCallback(
     (dt: any) => {
+      // eslint-disable-next-line array-callback-return
       const WeekDayy = weekDaily.find((week: any) => {
-        console.log('dt', dt);
-        console.log('week.dt', week.dt);
-        console.log('week', week);
         if (week.dt === dt) {
           return true;
         }
       });
       setDayDayDay(WeekDayy);
       setOpen(false);
-      console.log('WeekDayyyyyyyyy', WeekDayy);
-      console.log('weekDaily', weekDaily);
     },
     [weekDaily]
   );
-
-  console.log('weekDaily', weekDaily);
-  console.log('dayDayDay', dayDayDay);
 
   return (
     <>

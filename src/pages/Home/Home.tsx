@@ -5,8 +5,8 @@ import React, {
   ChangeEvent,
 } from 'react';
 import { useSelector } from 'react-redux';
-import { useAppDispatch, RootState } from '../../store/store';
 import { IoSearch } from 'react-icons/io5';
+import { useAppDispatch, RootState } from '../../store/store';
 import * as S from './HomeStyles';
 import { userWeather } from '../../store/userWeather/userWeatherThunk';
 import { weekWeather } from '../../store/weekWeather/weekWeatherThunk';
@@ -26,7 +26,7 @@ export function Home() {
     dispatch(userWeather({ city: city1 }));
   }, [dispatch, city1]);
 
-  const anyCity1 = useCallback(() => {
+  const anyWeatherCity = useCallback(() => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     dispatch(weekWeather({ cityy: city1 }));
   }, [dispatch, city1]);
@@ -41,8 +41,8 @@ export function Home() {
   const withdraw = useCallback(() => {
     setOpen(true);
     anyCity();
-    anyCity1();
-  }, [anyCity, anyCity1]);
+    anyWeatherCity();
+  }, [anyCity, anyWeatherCity]);
 
   const handleKeyDown = useCallback(
     (event: any): any => {
@@ -82,9 +82,9 @@ export function Home() {
           </S.SearchIcon>
         </S.Container>
         {open && <WeekDay />}
+        {open && <HourlyDay />}
       </S.Header1>
       <EndPage />
-      <HourlyDay />
     </>
   );
 }

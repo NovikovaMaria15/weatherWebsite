@@ -22,6 +22,7 @@ export const AdditionalData = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-bottom: 150px;
 `;
 
 export const weekdayDay = styled.div`

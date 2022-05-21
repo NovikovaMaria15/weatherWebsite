@@ -31,6 +31,8 @@ module.exports = {
     "html/report-bad-indent": "error",
   },
   extends: [
+    "airbnb",
+    "airbnb/hooks",
     "prettier",
     "eslint:recommended",
     "eslint-config-prettier",

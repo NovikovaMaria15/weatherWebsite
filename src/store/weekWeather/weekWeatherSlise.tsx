@@ -12,9 +12,9 @@ const weekWeatherSlise = createSlice({
   reducers: {},
   extraReducers: {
     [weekWeather.fulfilled.toString()]: (state, action) => {
-      console.log('action', action);
-      console.log('state', state);
+      // eslint-disable-next-line no-param-reassign
       state.daily = action.payload.response.daily;
+      // eslint-disable-next-line no-param-reassign
       state.hourly = action.payload.response.hourly;
     },
   },

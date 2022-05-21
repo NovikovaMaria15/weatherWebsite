@@ -5,47 +5,42 @@ import { Weather } from '../../weekComponents/Weather/Weather';
 import { WeatherDay } from '../../weekComponents/WeatherDay/WeatherDay';
 import { WeatherItems } from '../WeatherItems/WeatherItems';
 import { Current } from '../Current/Current';
-import * as S from './HourlyDay';
+import { WeatherHourlyDay } from '../WeatherHourlyDay/WeatherHourlyDay';
 
 export function HourlyDay() {
-  // const [dayDay, alignmentDayDay] = useState(false);
-  const [dayDayDay, setDayDayDay]: any[] = useState();
+  const dayHourly = useSelector((state: RootState) => state.weekWeather.hourly);
 
-  // const dayHourly = useSelector((state: RootState) => state.weekWeather.hourly);
+  const data = new Date().toLocaleString('default', {
+    hour: '2-digit',
+  });
 
-  // const alignmentDay = useCallback(
-  //   (dt: any) => {
-  //     const HourlyDayy = dayHourly.find((week: any) => {
-  //       if (week.dt === dt) {
-  //         return true;
-  //       }
-  //     });
-  //     setDayDayDay(HourlyDayy);
-  //   },
-  //   [HourlyDay]
-  // );
+  // eslint-disable-next-line array-callback-return
+  const HourlyDayy = dayHourly.find((week: any) => {
+    if (
+      new Date(week.dt * 1000).toLocaleString('default', {
+        hour: '2-digit',
+      }) === data
+    ) {
+      return true;
+    }
+  });
+
+  const Hourly = HourlyDayy;
 
   return (
-    <>
-      {' '}
-      <div>p</div>
-      {/* {dayDayDay && (
-        <WeatherItems
-          tempMax={Math.round(dayDayDay.temp.max - 273)}
-          tempMin={Math.round(dayDayDay.temp.min - 273)}
-          humidity={dayDayDay.humidity}
-          sea_level={dayDayDay.pressure}
-          speed={dayDayDay.wind_speed}
-          sunrise={new Date(dayDayDay.sunrise * 1000).toLocaleString(
-            'default',
-            { hour: '2-digit', minute: '2-digit' }
-          )}
-          sunset={new Date(dayDayDay.sunset * 1000).toLocaleString('default', {
-            hour: '2-digit',
-            minute: '2-digit',
-          })}
-        />
-      )} */}
-    </>
+    Hourly && (
+      <WeatherHourlyDay
+        date={new Date(Hourly.dt * 1000).toLocaleString('default', {
+          hour: '2-digit',
+          minute: '2-digit',
+        })}
+        temp={Math.round(Hourly.temp - 273)}
+        src={`http://openweathermap.org/img/wn/${Hourly.weather[0].icon}@2x.png`}
+        humidity={Hourly.humidity}
+        seaLevel={Hourly.pressure}
+        windGust={Hourly.wind_gust}
+        speed={Hourly.wind_speed}
+      />
+    )
   );
 }

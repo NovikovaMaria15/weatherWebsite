@@ -10,7 +10,6 @@ export const Header1 = styled.div`
 
 export const Photo = styled.img`
   min-width: 100vw;
-  height: 100%;
   height: 400px;
   object-fit: cover;
   filter: brightness(92%);

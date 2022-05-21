@@ -13,7 +13,7 @@ export function WeatherItems({
   tempMax,
   tempMin,
   humidity,
-  sea_level,
+  seaLevel,
   speed,
   sunrise,
   sunset,
@@ -57,7 +57,7 @@ export function WeatherItems({
             <S.IconsSize>
               <WiBarometer />
             </S.IconsSize>
-            {sea_level} гПа
+            {seaLevel} гПа
           </S.TextAndIcons>
         </S.AligningEachOther>
         <S.AligningEachOther>
