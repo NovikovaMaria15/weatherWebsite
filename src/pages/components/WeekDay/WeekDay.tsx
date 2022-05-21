@@ -1,14 +1,13 @@
 import React, { useState, useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../store/store';
-import { Weather } from '../../weekComponents/Weather/Weather';
-import { WeatherDay } from '../../weekComponents/WeatherDay/WeatherDay';
+import { Weather } from 'src/pages/weekComponents/Weather/Weather';
+import { RootState } from 'src/store/store';
+import temperature from 'src/servises/tempConverter';
 import { WeatherItems } from '../WeatherItems/WeatherItems';
 import { Current } from '../Current/Current';
 import * as S from './WeekDayStyles';
 
 export function WeekDay() {
-  // const [dayDay, alignmentDayDay] = useState(false);
   const [dayDayDay, setDayDayDay]: any[] = useState('');
   const [open, setOpen] = useState(true);
 
@@ -39,7 +38,7 @@ export function WeekDay() {
             onClick={() => alignmentDay(weekDail.dt)}
           >
             <Weather
-              tempDay={Math.round(weekDail.temp.day - 273)}
+              tempDay={temperature(weekDail.temp.day)}
               weekdayDay={new Date(weekDail.dt * 1000).toLocaleString(
                 'default',
                 { weekday: 'long' }
@@ -70,10 +69,10 @@ export function WeekDay() {
       )}
       {open && weekDaily[0] && (
         <WeatherItems
-          tempMax={Math.round(weekDaily[0].temp.max - 273)}
-          tempMin={Math.round(weekDaily[0].temp.min - 273)}
+          tempMax={temperature(weekDaily[0].temp.max)}
+          tempMin={temperature(weekDaily[0].temp.min)}
           humidity={weekDaily[0].humidity}
-          sea_level={weekDaily[0].pressure}
+          seaLevel={weekDaily[0].pressure}
           speed={weekDaily[0].wind_speed}
           sunrise={new Date(weekDaily[0].sunrise * 1000).toLocaleString(
             'default',

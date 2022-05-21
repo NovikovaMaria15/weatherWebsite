@@ -1,8 +1,8 @@
 import React from 'react';
 import { WiDayCloudy } from 'react-icons/wi';
-import * as S from './EndPageStyles';
+import * as S from './FooterStyles';
 
-export function EndPage() {
+export function Footer() {
   return (
     <S.HeaderWeather>
       <S.Alignment>

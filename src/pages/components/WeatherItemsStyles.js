@@ -39,10 +39,6 @@ export const ChooseTemp = styled.div`
   padding-bottom: 20px;
 `;
 
-export const Text = styled.div`
-  // padding-left: 10px;
-`;
-
 export const Today = styled.div`
   display: flex;
   align-items: center;

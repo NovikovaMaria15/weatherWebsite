@@ -6,30 +6,30 @@ import React, {
 } from 'react';
 import { useSelector } from 'react-redux';
 import { IoSearch } from 'react-icons/io5';
-import { useAppDispatch, RootState } from '../../store/store';
+import { useAppDispatch, RootState } from 'src/store/store';
+import { userWeather } from 'src/store/userWeather/userWeatherThunk';
+import { weekWeather } from 'src/store/weekWeather/weekWeatherThunk';
 import * as S from './HomeStyles';
-import { userWeather } from '../../store/userWeather/userWeatherThunk';
-import { weekWeather } from '../../store/weekWeather/weekWeatherThunk';
 import { Header } from '../components/Header/Header';
 import { WeekDay } from '../components/WeekDay/WeekDay';
-import { EndPage } from '../components/EndPage/EndPage';
+import { Footer } from '../components/Footer/Footer';
 import { HourlyDay } from '../components/HourlyDay/HourlyDay';
 
 export function Home() {
   const dispatch = useAppDispatch();
-  const [city1, setCity] = useState('');
+  const [selectedСity, setCity] = useState('');
   const [open, setOpen] = useState(false);
   const displayCity = useSelector((state: RootState) => state.userWeather.data);
 
   const anyCity = useCallback(() => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    dispatch(userWeather({ city: city1 }));
-  }, [dispatch, city1]);
+    dispatch(userWeather({ city: selectedСity }));
+  }, [dispatch, selectedСity]);
 
   const anyWeatherCity = useCallback(() => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    dispatch(weekWeather({ cityy: city1 }));
-  }, [dispatch, city1]);
+    dispatch(weekWeather({ cityy: selectedСity }));
+  }, [dispatch, selectedСity]);
 
   const handleChangeCity: ChangeEventHandler<HTMLInputElement> = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
@@ -68,7 +68,7 @@ export function Home() {
           <S.InputHome
             type="text"
             name="text"
-            value={city1}
+            value={selectedСity}
             onChange={handleChangeCity}
             onKeyPress={handleKeyDown}
             placeholder="Введите название города"
@@ -84,7 +84,7 @@ export function Home() {
         {open && <WeekDay />}
         {open && <HourlyDay />}
       </S.Header1>
-      <EndPage />
+      <Footer />
     </>
   );
 }

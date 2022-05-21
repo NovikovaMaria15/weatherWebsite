@@ -1,5 +1,5 @@
 import React from 'react';
-import * as S from '../../components/WeatherItemsStyles';
+import * as S from 'src/pages/components/WeatherItemsStyles';
 
 export function Weather({
   tempDay,

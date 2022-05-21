@@ -35,10 +35,3 @@ export const Year = styled.div`
   font-size: 1.1em;
   padding-top: 30px;
 `;
-
-// export const CenterAlignment = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-// `;
