@@ -102,7 +102,7 @@ export function WeekDay() {
           tempMax={Math.round(dayDayDay.temp.max - 273)}
           tempMin={Math.round(dayDayDay.temp.min - 273)}
           humidity={dayDayDay.humidity}
-          sea_level={dayDayDay.pressure}
+          seaLevel={dayDayDay.pressure}
           speed={dayDayDay.wind_speed}
           sunrise={new Date(dayDayDay.sunrise * 1000).toLocaleString(
             'default',
