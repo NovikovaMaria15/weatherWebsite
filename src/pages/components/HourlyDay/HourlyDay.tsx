@@ -12,7 +12,7 @@ export function HourlyDay() {
   });
 
   // eslint-disable-next-line array-callback-return
-  const hourlyDayy = dayHourly.find((week: any) => {
+  const hourly = dayHourly.find((week: any) => {
     if (
       new Date(week.dt * 1000).toLocaleString('default', {
         hour: '2-digit',
@@ -21,8 +21,6 @@ export function HourlyDay() {
       return true;
     }
   });
-
-  const hourly = hourlyDayy;
 
   return (
     hourly && (
