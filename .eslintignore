@@ -8,3 +8,6 @@ babel.config.js
 postcss.config.js
 prettier.config.js
 src/reportWebVitals.js
+Footer.test.js
+Header.test.js
+HourlyDay.test.js
