@@ -64,6 +64,7 @@ module.exports = {
     "no-use-extend-native",
   ],
   rules: {
+    "react/react-in-jsx-scope": "off",
     "prettier/prettier": ["error", { "singleQuote": true }],
     "react/prop-types": 0,
     "react/destructuring-assignment": 0,

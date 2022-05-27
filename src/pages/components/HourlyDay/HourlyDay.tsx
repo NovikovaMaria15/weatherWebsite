@@ -22,20 +22,20 @@ export function HourlyDay() {
     }
   });
 
-  return (
-    hourly && (
-      <WeatherHourlyDay
-        date={new Date(hourly.dt * 1000).toLocaleString('default', {
-          hour: '2-digit',
-          minute: '2-digit',
-        })}
-        temp={temperature(hourly.temp)}
-        src={`http://openweathermap.org/img/wn/${hourly.weather[0].icon}@2x.png`}
-        humidity={hourly.humidity}
-        seaLevel={hourly.pressure}
-        windGust={hourly.wind_gust}
-        speed={hourly.wind_speed}
-      />
-    )
+  return hourly ? (
+    <WeatherHourlyDay
+      date={new Date(hourly.dt * 1000).toLocaleString('default', {
+        hour: '2-digit',
+        minute: '2-digit',
+      })}
+      temp={temperature(hourly.temp)}
+      src={`http://openweathermap.org/img/wn/${hourly.weather[0].icon}@2x.png`}
+      humidity={hourly.humidity}
+      seaLevel={hourly.pressure}
+      windGust={hourly.wind_gust}
+      speed={hourly.wind_speed}
+    />
+  ) : (
+    <div>test</div>
   );
 }
