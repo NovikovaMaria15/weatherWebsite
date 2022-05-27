@@ -7,7 +7,7 @@ import {
   WiStrongWind,
   WiBarometer,
 } from 'react-icons/wi';
-import * as S from '../WeatherItemsStyles';
+import * as S from '../../components/WeatherItemsStyles';
 
 export function WeatherItems({
   tempMax,

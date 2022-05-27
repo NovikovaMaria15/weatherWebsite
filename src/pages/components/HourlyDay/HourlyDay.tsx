@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from 'src/store/store';
 import temperature from 'src/servises/tempConverter';
-import { WeatherHourlyDay } from '../WeatherHourlyDay/WeatherHourlyDay';
+import { WeatherHourlyDay } from '../../weekComponents/Weather/WeatherHourlyDay/WeatherHourlyDay';
 
 export function HourlyDay() {
   const dayHourly = useSelector((state: RootState) => state.weekWeather.hourly);

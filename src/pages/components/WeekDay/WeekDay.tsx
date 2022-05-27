@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Weather } from 'src/pages/weekComponents/Weather/Weather';
 import { RootState } from 'src/store/store';
 import temperature from 'src/servises/tempConverter';
-import { WeatherItems } from '../WeatherItems/WeatherItems';
+import { WeatherItems } from '../../weekComponents/Weather/WeatherItems';
 import { Current } from '../Current/Current';
 import * as S from './WeekDayStyles';
 
