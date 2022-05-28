@@ -6,7 +6,7 @@ const initialState: { daily: any; hourly: any } = {
   hourly: [],
 };
 
-const weekWeatherSlise = createSlice({
+export const weekWeatherSlise = createSlice({
   name: 'weekWeather',
   initialState,
   reducers: {},
