@@ -13,7 +13,7 @@ import * as S from './HomeStyles';
 import { Header } from '../components/Header/Header';
 import { WeekDay } from '../components/WeekDay/WeekDay';
 import { Footer } from '../components/Footer/Footer';
-import { HourlyDay } from '../components/HourlyDay/HourlyDay';
+import HourlyDay from '../components/HourlyDay/HourlyDay';
 
 export function Home() {
   const dispatch = useAppDispatch();

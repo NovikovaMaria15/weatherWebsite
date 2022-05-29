@@ -1,5 +1,5 @@
 import { renderWithRedux } from 'src/specHelper';
-import { HourlyDay } from './HourlyDay';
+import HourlyDay from './HourlyDay';
 
 describe('Redux', () => {
   it('checks 0', () => {
