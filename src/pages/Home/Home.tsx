@@ -11,7 +11,7 @@ import { userWeather } from 'src/store/userWeather/userWeatherThunk';
 import { weekWeather } from 'src/store/weekWeather/weekWeatherThunk';
 import * as S from './HomeStyles';
 import { Header } from '../components/Header/Header';
-import { WeekDay } from '../components/WeekDay/WeekDay';
+import WeekDay from '../components/WeekDay/WeekDay';
 import { Footer } from '../components/Footer/Footer';
 import HourlyDay from '../components/HourlyDay/HourlyDay';
 
